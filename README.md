@@ -1,7 +1,7 @@
 ## git-tips
 > Collection of `git-tips`, want to add your tips? Checkout [contributing.md](./contributing.md)
 
-[English](http://git.io/git-tips) | [中文](https://github.com/521xueweihan/git-tips) | [Русский](https://github.com/Imangazaliev/git-tips)
+[English](http://git.io/git-tips) | [中文](https://github.com/521xueweihan/git-tips) | [Русский](https://github.com/Imangazaliev/git-tips) | [한국어](https://github.com/mingrammer/git-tips) | [Tiếng Việt](https://github.com/hprobotic/git-tips)
 
 ### __Tools:__
 
@@ -14,6 +14,7 @@ P.S: All these commands are tested on `git version 2.7.4 (Apple Git-66)`.
 * [Everyday Git in twenty commands or so](#everyday-git-in-twenty-commands-or-so)
 * [Show helpful guides that come with Git](#show-helpful-guides-that-come-with-git)
 * [Search change by content](#search-change-by-content)
+* [Remove sensitive data from history, after a push](#remove-sensitive-data-from-history-after-a-push)
 * [Sync with remote, overwrite local changes](#sync-with-remote-overwrite-local-changes)
 * [List of all files till a commit](#list-of-all-files-till-a-commit)
 * [Git reset first commit](#git-reset-first-commit)
@@ -164,6 +165,7 @@ P.S: All these commands are tested on `git version 2.7.4 (Apple Git-66)`.
 * [List all git aliases](#list-all-git-aliases)
 * [Show git status short](#show-git-status-short)
 * [Checkout a commit prior to a day ago](#checkout-a-commit-prior-to-a-day-ago)
+* [Push a new local branch to remote repository and track](#push-a-new-local-branch-to-remote-repository-and-track)
 
 <!-- Don’t remove or change the comment below – that can break automatic updates. More info at <http://npm.im/doxie.inject>. -->
 <!-- @doxie.inject end toc -->
@@ -184,6 +186,11 @@ git help -g
 ## Search change by content
 ```sh
 git log -S'<a term in the source>'
+```
+
+## Remove sensitive data from history, after a push
+```sh
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch <path-to-your-file>' --prune-empty --tag-name-filter cat -- --all && git push origin --force --all
 ```
 
 ## Sync with remote, overwrite local changes
@@ -562,12 +569,6 @@ git clean -f
 git clean -f -d
 ```
 
-
-__Alternatives:__
-```sh
-git clean -df
-```
-
 ## Update all the submodules
 ```sh
 git submodule foreach git pull
@@ -727,7 +728,7 @@ git diff --word-diff
 
 ## Show changes using common diff tools.
 ```sh
-git difftool -t <commit1> <commit2> <path>
+git difftool [-t <tool>] <commit1> <commit2> <path>
 ```
 
 ## Don’t consider changes for tracked file.
@@ -1154,6 +1155,11 @@ git status --short --branch
 ## Checkout a commit prior to a day ago
 ```sh
 git checkout master@{yesterday}
+```
+
+## Push a new local branch to remote repository and track
+```sh
+git push -u origin <branch_name>
 ```
 
 <!-- Don’t remove or change the comment below – that can break automatic updates. More info at <http://npm.im/doxie.inject>. -->

@@ -8,6 +8,9 @@
     "title": "Search change by content",
     "tip": "git log -S'<a term in the source>'"
 }, {
+    "title": "Remove sensitive data from history, after a push",
+    "tip": "git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch <path-to-your-file>' --prune-empty --tag-name-filter cat -- --all && git push origin --force --all"
+}, {
     "title": "Sync with remote, overwrite local changes",
     "tip": "git fetch origin && git reset --hard origin/master && git clean -f -d"
 }, {
@@ -183,8 +186,7 @@
     "tip": "git clean -f"
 }, {
     "title": "Forcefully remove untracked directory",
-    "tip": "git clean -f -d",
-    "alternatives": ["git clean -df"]
+    "tip": "git clean -f -d"
 }, {
     "title": "Update all the submodules",
     "tip": "git submodule foreach git pull",
@@ -255,7 +257,7 @@
     "tip": "git diff --word-diff"
 }, {
     "title": "Show changes using common diff tools.",
-    "tip": "git difftool -t <commit1> <commit2> <path>"
+    "tip": "git difftool [-t <tool>] <commit1> <commit2> <path>"
 }, {
     "title": "Don’t consider changes for tracked file.",
     "tip": "git update-index --assume-unchanged <file_name>"
@@ -488,5 +490,8 @@
  {
      "title": "Checkout a commit prior to a day ago",
      "tip": "git checkout master@{yesterday}"
- }
+ }, {
+	"title": "Push a new local branch to remote repository and track",
+	"tip": "git push -u origin <branch_name>"
+}
 ]
